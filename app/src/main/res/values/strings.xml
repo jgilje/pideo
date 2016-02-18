@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Pideo</string>
+
+    <string name="button_disconnect">Disconnect</string>
+    <string name="hint_host">Hostname</string>
+    <string name="hint_port">Port</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="manual_entry">Manual Entry</string>
+
+    <string name="manually_added">Manually added</string>
+    <string name="autodetected">Autodetected</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="connection_failed">Connection Failed</string>
+    <string name="failed_to_connect">Failed to connect to remote server</string>
+    <string name="connection_aborted">The connection with the remote server was dropped</string>
+</resources>
