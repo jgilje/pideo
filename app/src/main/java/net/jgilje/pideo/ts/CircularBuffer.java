@@ -43,11 +43,8 @@ public class CircularBuffer {
      * @return
      */
     private boolean isEmpty() {
-        if (demuxReaderPacket == demuxWriterPacket) {
-            return true;
-        }
+        return demuxReaderPacket == demuxWriterPacket;
 
-        return false;
     }
 
     /**
@@ -55,17 +52,14 @@ public class CircularBuffer {
      * @return
      */
     private boolean isFull() {
-        if ((demuxWriterPacket ^ demuxReaderPacket) == WRAP_MARKER) {
-            return true;
-        }
+        return (demuxWriterPacket ^ demuxReaderPacket) == WRAP_MARKER;
 
-        return false;
     }
     /**
      * Configures the readerBuffer for the current demuxReaderPacket, and parses the packet
      * Waits indefinitely if the buffer is empty
      */
-    public void nextReader() {
+    void nextReader() {
         boolean packet_available = false;
         do {
             if (isEmpty()) {
@@ -88,7 +82,7 @@ public class CircularBuffer {
     /**
      * Advances demuxReaderPacket position by one
      */
-    public void advanceReader() {
+    void advanceReader() {
         int packet = demuxReaderPacket & COUNTER_MASK;
 
         packet++;
@@ -103,7 +97,7 @@ public class CircularBuffer {
         }
     }
 
-    public ByteBuffer readerBuffer() {
+    ByteBuffer readerBuffer() {
         return readerBuffer;
     }
 
@@ -173,14 +167,14 @@ public class CircularBuffer {
         }
     }
 
-    public void stopChannelReader() throws InterruptedException {
+    void stopChannelReader() throws InterruptedException {
         if (channelReaderThread != null) {
             channelReaderThread.interrupt();
             channelReaderThread.join();
         }
     }
 
-    public void startChannelReader(ReadableByteChannel channel) {
+    void startChannelReader(ReadableByteChannel channel) {
         channelReaderThread = new Thread(new ChannelReader(channel), "CircularBuffer.ChannelReader");
         channelReaderThread.start();
     }

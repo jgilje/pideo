@@ -17,13 +17,13 @@ import java.nio.channels.SocketChannel;
 /**
  * Created by jgilje on 12/27/15.
  */
-public class Player extends Thread {
+class Player extends Thread {
     /**
      * Log tag
      */
     private static final String TAG = "Player";
 
-    public static final String MIMETYPE_VIDEO_AVC = "video/avc";
+    private static final String MIMETYPE_VIDEO_AVC = "video/avc";
 
     private Demuxer demuxer = new Demuxer();
     private final Surface surface;
@@ -36,18 +36,18 @@ public class Player extends Thread {
     private int serverPort;
     private EventListener eventListener;
 
-    public Player(Surface surface, String serverHost, int serverPort) {
+    Player(Surface surface, String serverHost, int serverPort) {
         super("Pideo.PlayerThread");
         this.surface = surface;
         this.serverHost = serverHost;
         this.serverPort = serverPort;
     }
 
-    public void setEventListener(EventListener eventListener) {
+    void setEventListener(EventListener eventListener) {
         this.eventListener = eventListener;
     }
 
-    public interface EventListener {
+    interface EventListener {
         void onSync();
         void onFailedToConnect();
         void onConnectionFailed();

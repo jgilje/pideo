@@ -36,7 +36,7 @@ public class Packet {
         }
     }
 
-    public boolean valid() {
+    private boolean valid() {
         return ((header & 0xff000000) >> 24) == SYNC_BYTE;
     }
 
@@ -44,11 +44,11 @@ public class Packet {
         return (header & 0x800000) != 0;
     }
 
-    public boolean payloadStart() {
+    boolean payloadStart() {
         return (header & 0x400000) != 0;
     }
 
-    public int pid() {
+    int pid() {
         return (header & 0x1fff00) >> 8;
     }
 
@@ -56,7 +56,7 @@ public class Packet {
         return (byte) ((header & 0xc0) >> 6);
     }
 
-    public boolean hasAdaptation() {
+    private boolean hasAdaptation() {
         return (header & 0x20) != 0;
     }
 
@@ -64,7 +64,7 @@ public class Packet {
         return (header & 0x10) != 0;
     }
 
-    public boolean isPsi(Map<Integer, Stream> streams) {
+    private boolean isPsi(Map<Integer, Stream> streams) {
         return pid() == 0 || (streams.containsKey(pid()) && streams.get(pid()).pmt);
     }
 
@@ -72,7 +72,7 @@ public class Packet {
         return header & 0xf;
     }
 
-    public void parsePsi(Map<Integer, Stream> streams) {
+    private void parsePsi(Map<Integer, Stream> streams) {
         byte pointer_field = buffer.get();
         for (byte i = 0; i < pointer_field; i++) {
             buffer.get();
@@ -135,7 +135,7 @@ public class Packet {
         return pts / 90;
     }
 
-    public void parsePes(Map<Integer, Stream> streams) {
+    private void parsePes(Map<Integer, Stream> streams) {
         int start_code_stream_id = buffer.getInt();
         int start_code = (start_code_stream_id & 0xffffff00) >> 8;
         int stream_id = start_code_stream_id & 0xff;

@@ -41,8 +41,8 @@ public class ContextMenuRecyclerView extends RecyclerView {
     }
 
     public static class ContextMenuInfo implements ContextMenu.ContextMenuInfo {
-        public int position;
-        public String hostname;
-        public int port;
+        int position;
+        String hostname;
+        int port;
     }
 }

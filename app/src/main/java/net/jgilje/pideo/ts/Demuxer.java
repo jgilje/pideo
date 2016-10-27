@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by jgilje on 01.04.15.
  */
 public class Demuxer {
-    public static final int TS_PACKET_SIZE = 188;
+    private static final int TS_PACKET_SIZE = 188;
 
     private Map<Integer, Stream> streams = new HashMap<>();
     private int selectedPid = -1;

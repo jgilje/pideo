@@ -13,10 +13,10 @@ import java.nio.channels.ReadableByteChannel;
  */
 public class BitStream {
     private final ByteBuffer buffer;
-    int bit_position = -1;
-    byte byte_buffer;
+    private int bit_position = -1;
+    private byte byte_buffer;
 
-    public BitStream(ByteBuffer buffer) {
+    private BitStream(ByteBuffer buffer) {
         this.buffer = buffer;
         buffer.position(0);
     }
@@ -35,7 +35,7 @@ public class BitStream {
         return b;
     }
 
-    public byte get_byte() {
+    private byte get_byte() {
         byte b = 0;
         byte current_bit = 7;
         while (current_bit >= 0) {
@@ -45,7 +45,7 @@ public class BitStream {
         return b;
     }
 
-    public int get_ue() {
+    private int get_ue() {
         check_and_advance_buffer();
         int ret = 0;
 
