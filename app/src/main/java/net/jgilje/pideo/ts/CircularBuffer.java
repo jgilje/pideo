@@ -25,7 +25,7 @@ public class CircularBuffer {
     CircularBuffer(int packetSize) {
         PACKET_SIZE = packetSize;
 
-        writerBuffer = ByteBuffer.allocate(PACKET_SIZE * DEMUX_BUFFER_PACKETS);
+        writerBuffer = ByteBuffer.allocateDirect(PACKET_SIZE * DEMUX_BUFFER_PACKETS);
         readerBuffer = writerBuffer.asReadOnlyBuffer();
     }
 
